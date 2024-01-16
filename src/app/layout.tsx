@@ -1,8 +1,9 @@
 import "@/src/styles/globals.css"
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
-import {ThemeProvider} from "@/src/components/theme-provider"
+import {ThemeProvider} from "@/src/components/ThemeProvider"
 import React from "react";
+import {Navbar} from "@/src/components/Navbar";
 
 const inter = Inter({subsets: ['latin'], variable: "--font-sans"})
 
@@ -21,6 +22,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             enableSystem
             disableTransitionOnChange
         >
+            <Navbar/>
             {children}
         </ThemeProvider>
         </body>
