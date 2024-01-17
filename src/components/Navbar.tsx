@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-
 import {cn} from "@/src/lib/utils"
+
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -13,7 +13,12 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/src/components/ui/navigation-menu"
+
+import {CommandMenu} from "@/src/components/CommandMenu"
+
 import {ThemeToggle} from "@/src/components/ThemeToggle"
+import {Button} from "@/src/components/ui/button";
+import {Moon, Sun} from "lucide-react";
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -56,10 +61,17 @@ const components: { title: string; href: string; description: string }[] = [
 export function Navbar() {
     return (
         <header
-            className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-14 max-w-screen-2xl items-center">
                 <NavigationMenu>
                     <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <Link href="/" legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    VLoB
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
                             <NavigationMenuContent>
@@ -131,6 +143,17 @@ export function Navbar() {
                     </NavigationMenuList>
                 </NavigationMenu>
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+                    <CommandMenu/>
+                    <Button variant="ghost" size="icon">
+                        <Moon
+                            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
+                        <span className="sr-only">Link to GitHub</span>
+                    </Button>
+                    <Button variant="ghost" size="icon">
+                        <Moon
+                            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
+                        <span className="sr-only">Link to GitHub</span>
+                    </Button>
                     <ThemeToggle/>
                 </div>
             </div>
