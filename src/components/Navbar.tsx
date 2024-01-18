@@ -3,7 +3,10 @@
 import * as React from "react"
 import Link from "next/link"
 import {cn} from "@/src/lib/utils"
-
+import {CommandMenu} from "@/src/components/CommandMenu"
+import {ThemeToggle} from "@/src/components/ThemeToggle"
+import {Button} from "@/src/components/ui/button";
+import {Hexagon, HexagonIcon} from "lucide-react";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -13,12 +16,6 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/src/components/ui/navigation-menu"
-
-import {CommandMenu} from "@/src/components/CommandMenu"
-
-import {ThemeToggle} from "@/src/components/ThemeToggle"
-import {Button} from "@/src/components/ui/button";
-import {Hexagon, HexagonIcon, Moon, Sun} from "lucide-react";
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -74,14 +71,15 @@ export function Navbar() {
                                 <NavigationMenuContent>
                                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                                         <li className="row-span-3">
-                                        <NavigationMenuLink asChild>
+                                            <NavigationMenuLink href="/" asChild>
                                                 <a className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                                                    href="/">
                                                     <div className="mb-2 mt-2 text-lg font-medium">
                                                         <Hexagon size="w-*"/>
                                                     </div>
                                                     <p className="text-sm leading-tight text-muted-foreground">
-                                                        The Video Library of Babel (VLB) contains every 5 second video that ever has, or could exist.
+                                                        The Video Library of Babel (VLB) contains every 5 second video
+                                                        that ever has, or could exist.
                                                     </p>
                                                 </a>
                                             </NavigationMenuLink>
@@ -114,23 +112,25 @@ export function Navbar() {
                                     </ul>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <Link href="/search" legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuItem
+                                className="hover:text-accent-foreground font-normal text-muted-foreground">
+                                <Link href="/search"
+                                      legacyBehavior passHref>
+                                    <NavigationMenuLink href="/search" className={navigationMenuTriggerStyle()}>
                                         Search
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <Link href="/about" legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        About
+                                <Link href="/random" legacyBehavior passHref>
+                                    <NavigationMenuLink href="/random" className={navigationMenuTriggerStyle()}>
+                                        Random
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
-                            <NavigationMenuItem className="justify-end">
+                            <NavigationMenuItem className="justify-end no-hover-effect">
                                 <Link href="/about" legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <NavigationMenuLink href="/about" className={navigationMenuTriggerStyle()}>
                                         About
                                     </NavigationMenuLink>
                                 </Link>
@@ -138,17 +138,21 @@ export function Navbar() {
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
-                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+                <div className="flex flex-1 items-center justify-between md:justify-end">
                     <CommandMenu/>
-                    <Button variant="ghost" size="icon">
-                        <Moon
-                            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
-                        <span className="sr-only">Link to GitHub</span>
-                    </Button>
-                    <Button variant="ghost" size="icon">
-                        <Moon
-                            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
-                        <span className="sr-only">Link to GitHub</span>
+                    <Button className="ms-2" variant="ghost" size="icon">
+                        <a href="https://github.com/samueljcatania/video-library-of-babel" target="_blank"
+                           rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="non  e"
+                                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                 className="lucide lucide-github">
+                                <path
+                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                <path d="M9 18c-4.51 2-5-2-7-2"/>
+                            </svg>
+                            <span className="sr-only">Link to GitHub</span>
+                        </a>
                     </Button>
                     <ThemeToggle/>
                 </div>
@@ -163,7 +167,7 @@ const ListItem = React.forwardRef<
 >(({className, title, children, ...props}, ref) => {
     return (
         <li>
-            <NavigationMenuLink asChild>
+            <NavigationMenuLink href="/" asChild>
                 <a
                     ref={ref}
                     className={cn(
