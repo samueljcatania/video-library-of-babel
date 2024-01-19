@@ -19,7 +19,7 @@ export function ThemeToggle() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
-                    {theme === 'light' ? <Sun/> : <Moon/>}
+                    {theme === 'light' ? <Sun size='20'/> : <Moon size='20'/>}
                     <span className="sr-only">Toggle theme</span>
                 </Button>
             </DropdownMenuTrigger>

@@ -23,8 +23,10 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             enableSystem
             disableTransitionOnChange
         >
-            <Navbar/>
-            {children}
+            <div className="relative flex min-h-screen flex-col bg-background">
+                <Navbar/>
+                {children}
+            </div>
         </ThemeProvider>
         <Footer/>
         </body>

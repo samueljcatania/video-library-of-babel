@@ -6,7 +6,7 @@ import {cn} from "@/src/lib/utils"
 import {CommandMenu} from "@/src/components/CommandMenu"
 import {ThemeToggle} from "@/src/components/ThemeToggle"
 import {Button} from "@/src/components/ui/button";
-import {Hexagon, HexagonIcon} from "lucide-react";
+import {AlignJustify, Hexagon, HexagonIcon} from "lucide-react";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -16,6 +16,7 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/src/components/ui/navigation-menu"
+import {Sidebar} from "@/src/components/Sidebar";
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -59,11 +60,12 @@ export function Navbar() {
     return (
         <header
             className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 max-w-screen-2xl items-center">
+            <div className="container flex h-14 max-w-screen-2xl items-center px-2 sm:px-8">
                 <div className="mr-4 hidden md:flex">
                     <a className="mr-6 flex items-center space-x-2" href="/">
                         <HexagonIcon/>
-                        <span className="hidden font-bold sm:inline-block">VLB</span></a>
+                        <span className="hidden font-bold sm:inline-block">VLB</span>
+                    </a>
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>
@@ -112,8 +114,23 @@ export function Navbar() {
                                     </ul>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-                            <NavigationMenuItem
-                                className="hover:text-accent-foreground font-normal text-muted-foreground">
+                            <NavigationMenuItem className="hidden md:flex lg:hidden">
+                                <NavigationMenuTrigger>Pages</NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                                        <ListItem href="/search" title="Search">
+                                            Search for a provided video or image in the library.
+                                        </ListItem>
+                                        <ListItem href="/random" title="Random">
+                                            Open up a random video in the library.
+                                        </ListItem>
+                                        <ListItem href="/about" title="About">
+                                            Information about the Video Library of Babel.
+                                        </ListItem>
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem className="hidden lg:flex">
                                 <Link href="/search"
                                       legacyBehavior passHref>
                                     <NavigationMenuLink href="/search" className={navigationMenuTriggerStyle()}>
@@ -121,14 +138,14 @@ export function Navbar() {
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
-                            <NavigationMenuItem>
+                            <NavigationMenuItem className="hidden lg:flex">
                                 <Link href="/random" legacyBehavior passHref>
                                     <NavigationMenuLink href="/random" className={navigationMenuTriggerStyle()}>
                                         Random
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
-                            <NavigationMenuItem className="justify-end no-hover-effect">
+                            <NavigationMenuItem className="hidden lg:flex">
                                 <Link href="/about" legacyBehavior passHref>
                                     <NavigationMenuLink href="/about" className={navigationMenuTriggerStyle()}>
                                         About
@@ -138,12 +155,15 @@ export function Navbar() {
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
+                <div className="inline-flex md:hidden">
+                    <Sidebar/>
+                </div>
                 <div className="flex flex-1 items-center justify-between md:justify-end">
                     <CommandMenu/>
                     <Button className="ms-2" variant="ghost" size="icon">
                         <a href="https://github.com/samueljcatania/video-library-of-babel" target="_blank"
                            rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                  fill="non  e"
                                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                                  className="lucide lucide-github">
@@ -154,7 +174,9 @@ export function Navbar() {
                             <span className="sr-only">Link to GitHub</span>
                         </a>
                     </Button>
-                    <ThemeToggle/>
+                    <div className="hidden md:flex">
+                        <ThemeToggle/>
+                    </div>
                 </div>
             </div>
         </header>
