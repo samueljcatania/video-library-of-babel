@@ -6,7 +6,7 @@ import {cn} from "@/src/lib/utils"
 import {CommandMenu} from "@/src/components/CommandMenu"
 import {ThemeToggle} from "@/src/components/ThemeToggle"
 import {Button} from "@/src/components/ui/button";
-import {AlignJustify, Hexagon, HexagonIcon} from "lucide-react";
+import {Hexagon, HexagonIcon} from "lucide-react";
 import {
     NavigationMenu,
     NavigationMenuContent,

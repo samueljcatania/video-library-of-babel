@@ -1,11 +1,7 @@
 import {Button} from "@/src/components/ui/button"
-import {Input} from "@/src/components/ui/input"
-import {Label} from "@/src/components/ui/label"
 import {
     Sheet,
-    SheetClose,
     SheetContent,
-    SheetDescription,
     SheetFooter,
     SheetHeader,
     SheetTitle,
@@ -13,13 +9,6 @@ import {
 } from "@/src/components/ui/sheet"
 import * as React from "react";
 import {AlignJustifyIcon, Hexagon, HexagonIcon} from "lucide-react";
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem, NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger, navigationMenuTriggerStyle
-} from "@/src/components/ui/navigation-menu";
 import Link from "next/link";
 
 export function Sidebar() {
