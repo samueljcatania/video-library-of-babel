@@ -1,6 +1,13 @@
-import Image from 'next/image'
-import {Button} from "@/src/components/ui/button"
+"use client"
+
 import * as React from "react";
+import {useState} from "react";
+import dynamic from "next/dynamic";
+
+const WasmComponent = dynamic(() => import('../components/WasmWrapper'), {
+    ssr: false,
+    loading: () => <p>Loading...</p>
+});
 
 export default function Home() {
     return (
@@ -16,6 +23,7 @@ export default function Home() {
                             A library of every 5 second video that ever has, or could exist. Completely open
                             source. Videos are 1080p at 30fps.
                         </span>
+                        <WasmComponent/>
                     </section>
                     <p>Hello</p>
                 </div>
